@@ -1,3 +1,9 @@
+-- Disable nested-loop joins for this query. The information_schema views below
+-- have no usable planner statistics, which otherwise yields pathological
+-- nested-loop plans. SET LOCAL scopes this to the surrounding transaction so it
+-- does not leak into other queries on the (pooled) connection.
+SET LOCAL enable_nestloop = 0;
+
 WITH schema_info AS (
     SELECT
         'postgresql' AS dbms,
