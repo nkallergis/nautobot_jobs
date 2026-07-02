@@ -88,5 +88,5 @@ class ERDExport(Job):
             len(rows),
         )
 
-jobs = (ERDExport)
+jobs = [ERDExport]
 register_jobs(*jobs)
