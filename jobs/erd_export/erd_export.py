@@ -6,8 +6,7 @@ import csv
 from django.core.files.base import ContentFile
 from django.db import connection
 
-from nautobot.apps.jobs import Job
-
+from nautobot.apps.jobs import Job, register_jobs
 
 class ERDExport(Job):
     """
@@ -89,3 +88,5 @@ class ERDExport(Job):
             len(rows),
         )
 
+jobs = (ERDExport)
+register_jobs(*jobs)
